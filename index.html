@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PBKong</title>
+    <style>
+      .rainbow-link {
+        color: red;
+        text-decoration: none;
+        animation: rainbow-color 4s steps(1, end) infinite;
+      }
+
+      @keyframes rainbow-color {
+        0% {
+          color: red;
+        }
+        16% {
+          color: rgb(255, 136, 1);
+        }
+        33% {
+          color: gold;
+        }
+        50% {
+          color: rgb(3, 240, 141);
+        }
+        66% {
+          color: deepskyblue;
+        }
+        83% {
+          color: mediumpurple;
+        }
+        100% {
+          color: red;
+        }
+      }
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      body > div:last-child {
+        margin-top: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      style="
+        background-color: MistyRose;
+        text-align: center;
+        padding: 40px;
+        border: 5px dotted Aquamarine;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      "
+    >
+      <!-- 图片横向排列容器 -->
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+        "
+      >
+        <img
+          src="images\Snipaste_2024-06-20_21-15-57.png"
+          alt="PBK."
+          style="
+            border: 5px double rgb(169, 205, 230);
+            border-radius: 16px;
+            height: auto;
+            width: 250px;
+          "
+        />
+        <img
+          src="images\cover.webp"
+          alt="PBK."
+          style="
+            border: 5px double rgb(169, 205, 230);
+            border-radius: 16px;
+            width: 250px;
+            aspect-ratio: 1485 / 1080;
+            object-fit: cover;
+          "
+        />
+      </div>
+
+      <!-- 文字位于两张图片正下方 -->
+      <h3 style="margin: 0; color: midnightblue">PBK.</h3>
+    </div>
+    <div
+      style="
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 15px;
+        line-height: 1.7;
+        text-align: center;
+      "
+    >
+      <p>我的网站</p>
+      <p>PBK.的网站</p>
+      <p>我的网站</p>
+      <p>我的网站</p>
+    </div>
+    <div
+      style="
+        background-color: MistyRose;
+        text-align: center;
+        padding: 30px;
+        border: 5px dotted Aquamarine;
+        font-size: 15px;
+        color: midnightblue;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      "
+    >
+      <p style="margin: 0">我的网站</p>
+      <a
+        href="https://www.bilibili.com/video/BV1UT42167xb/?spm_id_from=333.337.search-card.all.click&vd_source=4b015f484665a681fb2c2d52c278d563"
+        class="rainbow-link"
+        >My Website
+      </a>
+      <a href="./flex.html" class="rainbow-link"> next page </a>
+    </div>
+  </body>
+</html>

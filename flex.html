@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 布局练习 gpt优化版</title>
+
+    <style>
+      /* 统一管理页面中经常重复使用的颜色和间距。 */
+      :root {
+        --page-background: rgb(236, 236, 224);
+        --panel-background: white;
+        --accent-blue: #62a6e6;
+        --accent-pink: rgb(235, 115, 185);
+        --nav-text: #ebb591;
+        --space: 8px;
+      }
+
+      /* 让元素声明的宽高包含 padding 和 border，尺寸更容易计算。 */
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+
+      body {
+        font-family: Arial, "Microsoft YaHei", sans-serif;
+      }
+
+      /* 整个后台页面：左侧边栏 + 右侧主区域。 */
+      .page {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        background-color: var(--page-background);
+      }
+
+      .panel {
+        background-color: var(--panel-background);
+        box-shadow:
+          inset 5px 5px 3px -2px #e7e9ffb0,
+          2px 3px 2px 0 var(--accent-blue);
+      }
+
+      /* 侧边栏按照内容自然排列，不让导航区强制填满剩余高度。 */
+      .sidebar {
+        width: 200px;
+        flex: 0 0 200px;
+        z-index: 1;
+        overflow-y: auto;
+      }
+
+      .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 3px dotted var(--accent-blue);
+      }
+
+      .profile-image {
+        display: block;
+        width: 150px;
+        height: auto;
+        border-radius: 12px;
+      }
+
+      .profile-name {
+        color: var(--accent-pink);
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .navigation-link {
+        display: block;
+        padding: 10px 25px;
+        border-bottom: 1px solid var(--accent-blue);
+        color: var(--nav-text);
+        font-size: 15px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .navigation-link:hover,
+      .navigation-link:focus-visible {
+        background-color: #f2f7fc;
+        color: var(--accent-blue);
+      }
+
+      /* 右侧主区域：顶部栏 + 可滚动内容区。 */
+      .main-area {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .topbar {
+        height: 60px;
+        flex: 0 0 60px;
+        z-index: 1;
+      }
+
+      .content {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        overflow: auto;
+      }
+
+      .primary-content {
+        display: flex;
+        flex: 3;
+        flex-direction: column;
+        min-width: 0;
+        margin: var(--space);
+      }
+
+      .statistics {
+        display: flex;
+        gap: var(--space);
+      }
+
+      .stat-card {
+        height: 97px;
+        flex: 1;
+      }
+
+      .item-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space);
+        margin-top: var(--space);
+        padding-bottom: 10px;
+      }
+
+      .list-item {
+        height: 160px;
+        flex-shrink: 0;
+      }
+
+      .secondary-content {
+        display: flex;
+        width: 200px;
+        flex: 0 0 200px;
+        flex-direction: column;
+        gap: var(--space);
+        margin: var(--space) var(--space) 0 0;
+      }
+
+      .notice-panel {
+        height: 157px;
+        flex-shrink: 0;
+      }
+
+      .message-panel {
+        height: 255px;
+        flex-shrink: 0;
+      }
+
+      /* 小屏幕隐藏两侧次要区域，并把数据卡片改成纵向排列。 */
+      @media (max-width: 600px) {
+        .sidebar,
+        .secondary-content {
+          display: none;
+        }
+
+        .statistics {
+          flex-direction: column;
+        }
+
+        .stat-card {
+          flex: 0 0 97px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- 侧边栏 -->
+      <aside class="sidebar panel">
+        <section class="profile" aria-label="个人信息">
+          <img
+            class="profile-image panel"
+            src="./images/Snipaste_2024-06-20_21-15-57.png"
+            alt="PBK 的头像"
+          />
+          <div class="profile-name">PBK.</div>
+        </section>
+
+        <nav class="navigation" aria-label="主导航">
+          <a class="navigation-link" href="#">DAOHANG</a>
+          <a class="navigation-link" href="#">DAOHANG</a>
+          <a class="navigation-link" href="#">DAOHANG</a>
+          <a class="navigation-link" href="#">DAOHANG</a>
+          <a class="navigation-link" href="#">DAOHANG</a>
+        </nav>
+      </aside>
+
+      <!-- 主区域 -->
+      <div class="main-area">
+        <header class="topbar panel"></header>
+
+        <main class="content">
+          <!-- 左侧主要内容 -->
+          <div class="primary-content">
+            <section class="statistics" aria-label="数据概览">
+              <article class="stat-card panel"></article>
+              <article class="stat-card panel"></article>
+              <article class="stat-card panel"></article>
+              <article class="stat-card panel"></article>
+            </section>
+
+            <section class="item-list" aria-label="内容列表">
+              <article class="list-item panel"></article>
+              <article class="list-item panel"></article>
+              <article class="list-item panel"></article>
+              <article class="list-item panel"></article>
+              <article class="list-item panel"></article>
+            </section>
+          </div>
+
+          <!-- 右侧辅助内容 -->
+          <aside class="secondary-content" aria-label="辅助信息">
+            <section class="notice-panel panel" aria-label="提示区"></section>
+            <section class="message-panel panel" aria-label="消息区"></section>
+          </aside>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
